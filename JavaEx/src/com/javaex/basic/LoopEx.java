@@ -14,7 +14,7 @@ public class LoopEx {
 		//breakEx();
 		//nestedFor();
 		//nestedForStar();
-		sixRandom();
+		//sixRandom();
 	}
 
 	private static void sixRandom() {
@@ -40,6 +40,17 @@ public class LoopEx {
 		int col = 1;
 		while(row <= rowCount)
 		{
+			if(col <= row)
+			{
+				col++;
+				System.out.print("*");
+			}
+			else
+			{
+				row++;
+				col = 1;
+				System.out.println();
+			}
 		}
 	}
 
