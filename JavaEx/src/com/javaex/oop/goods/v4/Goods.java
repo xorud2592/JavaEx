@@ -1,15 +1,19 @@
-package com.javaex.oop.goods.v3;
+package com.javaex.oop.goods.v4;
 
 public class Goods {
 	private String name;
 	private int price;
 	
-
-	public Goods(String name, int price)
+	public Goods(String name)
 	{
 		this.name = name;
+	}
+	public Goods(String name, int price)
+	{
+		this(name);
 		this.price = price;
 	}
+	
 	
 	public String getName()
 	{
