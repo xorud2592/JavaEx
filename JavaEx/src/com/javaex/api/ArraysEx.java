@@ -22,9 +22,11 @@ public class ArraysEx {
 				new Member("장길산"),
 				new Member("전후치")
 		};
-		
-		Arrays.sort(members);
+
 		System.out.println("원본: " + Arrays.toString(members));
+		Arrays.sort(members);
+		System.out.println("변경: " + Arrays.toString(members));
+		
 		int index = Arrays.binarySearch(members, new Member("홍길동"), new Comparator<Member>() {
 			@Override
 			public int compare(Member o1, Member o2) {
