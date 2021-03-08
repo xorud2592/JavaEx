@@ -50,6 +50,7 @@ public class Point implements Cloneable {
 			clone = (Point)clone();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
+			
 		}
 		
 		return clone;
@@ -58,7 +59,7 @@ public class Point implements Cloneable {
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		Scoreboard clone = (Scoreboard)super.clone();
-		clone.scores = Arrays.copyOf(scores, scores.length);
+		clone.scores = Arrays.copyOf(clone.scores, clone.scores.length);
 		return super.clone();
 	}
 }
