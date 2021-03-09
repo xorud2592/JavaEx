@@ -1,6 +1,7 @@
 package com.javaex.collection.hash;
 
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Map;
 
 public class HashtableEx {
@@ -23,5 +24,19 @@ public class HashtableEx {
 		System.out.println("map has 202 key ? " + map.containsKey("202"));
 		
 		System.out.println("map has subject Java? " + map.containsValue(new ClassRoom("Java")));
+		
+		Iterator<String> it = map.keySet().iterator();
+		while(it.hasNext())
+		{
+			ClassRoom item = map.get(it.next());
+			System.out.println(item);
+		}
+		
+		map.remove("202");
+		System.out.println("Map: " + map);
+		
+		map.clear();
+		System.out.println("Map: " + map);
+	
 	}
 }
