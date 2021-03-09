@@ -34,7 +34,13 @@ public class ListEx {
 		}
 		System.out.println();
 		
-		Iterator<String>r
+		Iterator<String> it = lst.iterator();
+		while(it.hasNext()) {	
+			String item = it.next();
+			System.out.print(item + " ");
+		}
+		System.out.println();
+		
 		lst.remove(2);
 		lst.remove("Python");
 		System.out.println("lst: " + lst);
