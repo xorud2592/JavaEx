@@ -27,6 +27,7 @@ public class FileClassEx {
 			} catch (IOException e) {
 				System.err.println("파일을 만들지 못했습니다!");
 			}
+			
 		}
 		printInfo(root);
 		System.out.println();
