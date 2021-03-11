@@ -26,43 +26,46 @@ public class Server {
 			System.out.println("<서버 시작>");
 			System.out.println("SERVER: [연결을 기다립니다.]");
 			
-			Socket socket = serverSocket.accept();
-			InetSocketAddress socketaddress = (InetSocketAddress)socket.getRemoteSocketAddress();
-			System.out.println("SERVER: [클라이언트가 연결되었습니다]");
-			System.out.println("	클라이언트: "+ socketaddress.getAddress() + ":" + socketaddress.getPort());
-			
-			InputStream is = socket.getInputStream();
-			Reader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
-			
-			
-			OutputStream os = socket.getOutputStream();
-			Writer osw =  new OutputStreamWriter(os, "UTF-8");
-			BufferedWriter bw = new BufferedWriter(osw);
-			
-			
-			String message;
-			
 			while(true) {
-				message = br.readLine();
-				
-				if(message == null) {
-					System.out.println("SERVER: 접속을 종료합니다");
-					break;
-				}
-				System.out.println("SERVER: [수신 메시지]" + message);
-				
-				message = "Echo back - " + message;
-				System.out.println("SERVER: [Echo back] : " +message);
-				bw.write(message);
-				bw.newLine();
-				bw.flush();
+				Socket socket = serverSocket.accept();
+				Thread thread = new ServerThread(socket);
+				thread.start();
 			}
-			
-			bw.close();
-			br.close();
-			
-			System.out.println("SERVER: [서버를 종료합니다.]");
+//			InetSocketAddress socketaddress = (InetSocketAddress)socket.getRemoteSocketAddress();
+//			System.out.println("SERVER: [클라이언트가 연결되었습니다]");
+//			System.out.println("	클라이언트: "+ socketaddress.getAddress() + ":" + socketaddress.getPort());
+//			
+//			InputStream is = socket.getInputStream();
+//			Reader isr = new InputStreamReader(is);
+//			BufferedReader br = new BufferedReader(isr);
+//			
+//			
+//			OutputStream os = socket.getOutputStream();
+//			Writer osw =  new OutputStreamWriter(os, "UTF-8");
+//			BufferedWriter bw = new BufferedWriter(osw);
+//			
+//			
+//			String message;
+//			
+//			while(true) {
+//				message = br.readLine();
+//				
+//				if(message == null) {
+//					System.out.println("SERVER: 접속을 종료합니다");
+//					break;
+//				}
+//				System.out.println("SERVER: [수신 메시지]" + message);
+//				
+//				message = "Echo back - " + message;
+//				System.out.println("SERVER: [Echo back] : " +message);
+//				bw.write(message);
+//				bw.newLine();
+//				bw.flush();
+//			}
+//			
+//			bw.close();
+//			br.close();
+//			
 		}catch(IOException e) {
 			e.printStackTrace();
 		} finally {
