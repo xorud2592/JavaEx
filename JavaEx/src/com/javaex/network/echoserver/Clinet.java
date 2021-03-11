@@ -1,9 +1,12 @@
 package com.javaex.network.echoserver;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.Writer;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
@@ -29,10 +32,20 @@ public class Clinet {
 			Writer osw = new OutputStreamWriter(os, "UTF-8");
 			BufferedWriter bw = new BufferedWriter(osw);
 			
+			InputStream is = socket.getInputStream();
+			Reader isr = new java.io.InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+			
 			String message = "테스트 메시지";
 			bw.write(message);
+			bw.newLine();
+			bw.flush();
+			
 			System.out.println("CLIENT:[전송 메시지]: " + message);
 			
+
+			String rcvMsg = br.readLine();
+			System.out.println("CLIENT:[전송 메시지]: " + message);
 			bw.close();
 			
 			System.out.println("<클라이언트 종료>");
