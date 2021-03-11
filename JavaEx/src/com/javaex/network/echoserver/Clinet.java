@@ -11,6 +11,7 @@ import java.io.Writer;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Clinet {
 
@@ -35,18 +36,40 @@ public class Clinet {
 			InputStream is = socket.getInputStream();
 			Reader isr = new java.io.InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
+//			
+//			String message = "테스트 메시지";
+//			bw.write(message);
+//			bw.newLine();
+//			bw.flush();
+//			
+//			System.out.println("CLIENT:[전송 메시지]: " + message);
+//			
+//
+//			String rcvMsg = br.readLine();
+//			System.out.println("CLIENT:[수신 메시지]: " + message);
 			
-			String message = "테스트 메시지";
-			bw.write(message);
-			bw.newLine();
-			bw.flush();
+			Scanner scanner = new Scanner(System.in);
 			
-			System.out.println("CLIENT:[전송 메시지]: " + message);
+			while(true) {
+				System.out.println("CLIENT:>");
+				String  message = scanner.nextLine();
+				if(message.equals("/q")) {
+					System.out.println("CLINET:[접속을 종료합니다]");
+					break;
+				}
+				System.out.println("CLIENT:[메시지 전송]: " + message);
+				bw.write(message);
+				bw.newLine();
+				bw.flush();
+				
+				String rcvMsg = br.readLine();
+				System.out.println("CLIENT:[메시지 수신]:" + rcvMsg);
+			}
 			
-
-			String rcvMsg = br.readLine();
-			System.out.println("CLIENT:[전송 메시지]: " + message);
+			scanner.close();
+			
 			bw.close();
+			br.close();
 			
 			System.out.println("<클라이언트 종료>");
 		}catch (ConnectException e) {
